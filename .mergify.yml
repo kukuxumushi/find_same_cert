@@ -1,0 +1,12 @@
+pull_request_rules:
+  - name: bb-poc-sibling-app-trust
+    conditions:
+      - base=master
+      - check-success=continuous-integration/travis-ci
+    actions:
+      comment:
+        message: |
+          [BB PoC] Mergify evaluated `check-success=continuous-integration/travis-ci`
+          as satisfied and fired this action. The only check with that name on this
+          PR was posted by a GitHub App **unrelated** to Travis CI. This demonstrates
+          the customer-expectation gap described in the bug-bounty report.
