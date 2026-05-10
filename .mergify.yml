@@ -3,4 +3,4 @@ merge_protections:
     if:
       - base = master
     success_conditions:
-      - "check-success = continuous-integration/travis-ci       "
+      - "check-success = continuous-integration/travis-ci"
