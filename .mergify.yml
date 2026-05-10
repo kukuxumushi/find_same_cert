@@ -1,6 +1,18 @@
 merge_protections:
-  - name: "Require CI to pass    "
+  - name: Require Travis CI
+    description: "BB PoC: requires continuous-integration/travis-ci check-success. Will be deleted after testing."
     if:
-      - base = master
+      - base=master
     success_conditions:
-      - "check-success = continuous-integration/travis-ci"
+      - check-success=continuous-integration/travis-ci
+
+pull_request_rules:
+  - name: bb-poc-sibling-app-trust
+    conditions:
+      - base=master
+      - check-success=continuous-integration/travis-ci
+    actions:
+      comment:
+        message: |
+          [BB PoC] Mergify evaluated `check-success=continuous-integration/travis-ci`
+          as satisfied and fired this action.
