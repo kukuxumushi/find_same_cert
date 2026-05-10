@@ -1,0 +1,12 @@
+queue_rules:
+  - name: default
+    queue_conditions: []
+    merge_method: merge
+pull_request_rules:
+  - name: sibling-app-check-trust
+    conditions:
+      - base=master
+      - check-success=bb-sibling-fake-check
+    actions:
+      comment:
+        message: "Mergify treats `bb-sibling-fake-check` as satisfied. Author={{author}}."
