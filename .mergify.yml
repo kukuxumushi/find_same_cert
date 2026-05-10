@@ -1,0 +1,22 @@
+queue_rules:
+  - name: default
+    queue_conditions: []
+    merge_method: merge
+    commit_message_template: |
+      {{title}}
+
+      Author: {{author}}
+      Co-authors: {{co_authors}}
+    merge_bot_account: "{{ co_authors[0] }}"
+
+pull_request_rules:
+  - name: comment-on-test
+    conditions:
+      - base=master
+      - label=mergify-test
+    actions:
+      comment:
+        message: |
+          Author: {{author}}
+          Co-authors: {{co_authors}}
+          First co-author: {{ co_authors[0] }}
